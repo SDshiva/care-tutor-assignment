@@ -1,3 +1,4 @@
+import 'package:care_tutors_assignment/config/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,8 +11,12 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    GetMaterialApp(
+    GetMaterialApp.router(
       title: "CareTutorsApp",
+      routerDelegate: router.routerDelegate,
+      routeInformationParser: router.routeInformationParser,
+      routeInformationProvider: router.routeInformationProvider,
+      debugShowCheckedModeBanner: false,
     ),
   );
 }
