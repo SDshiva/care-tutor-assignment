@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "925069441457",
+    "project_id": "care-tutors-assignment",
+    "storage_bucket": "care-tutors-assignment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925069441457:android:7a5dc5bd70ab8dde63a590",
+        "android_client_info": {
+          "package_name": "com.example.care_tutors_assignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvckovNpZPAOyOLA8x0J1RRv9TbTGV-jk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
