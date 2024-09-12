@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:care_tutors_assignment/config/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,13 +26,21 @@ class AuthController extends GetxController {
   Future<void> register(BuildContext context) async {
     if (passwordController.text == confirmPasswordController.text) {
       try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
-        showSnackBar(context, "Successful", "Login Successfully!");
-        User? user = FirebaseAuth.instance.currentUser;
+        // User? user = FirebaseAuth.instance.currentUser;
+        User? user = userCredential.user;
         if (user != null) {
+          await FirebaseFirestore.instance.collection('user').doc(user.uid).set(
+            {
+              'uid': user.uid,
+              'createdAt': FieldValue.serverTimestamp(),
+            },
+          );
+          showSnackBar(context, "Successful", "Login Successfully!");
           context.go(Paths.HOME_SCREEN);
           clearController();
         }

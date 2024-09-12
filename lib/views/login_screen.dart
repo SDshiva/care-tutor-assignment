@@ -145,6 +145,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
+                      authController.clearController();
                       context.push(Paths.REGISTER_SCREEN);
                     },
                     child: Text("Register!"),

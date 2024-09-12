@@ -15,6 +15,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    notesController.fetchNotes(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Notes"),
