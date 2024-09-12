@@ -3,6 +3,9 @@
 import 'package:care_tutors_assignment/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+
+import '../config/routes.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
@@ -19,6 +22,7 @@ class RegisterScreen extends StatelessWidget {
           padding: EdgeInsets.all(20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextField(
                 controller: authController.emailController,
@@ -173,7 +177,26 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Already have an account?"),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      context.go(Paths.LOGIN_SCREEN);
+                    },
+                    child: Text("Login!"),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

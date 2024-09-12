@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:care_tutors_assignment/config/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -20,38 +22,58 @@ class AuthController extends GetxController {
     isConfirmPasswordHidden.value = !isConfirmPasswordHidden.value;
   }
 
-  void register(BuildContext context) async {
+  Future<void> register(BuildContext context) async {
     if (passwordController.text == confirmPasswordController.text) {
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
         );
-
+        showSnackBar(context, "Successful", "Login Successfully!");
         User? user = FirebaseAuth.instance.currentUser;
         if (user != null) {
           context.go(Paths.HOME_SCREEN);
-          Get.snackbar(
-            "Success",
-            "Hello ${user.displayName ?? "User"}",
-            snackPosition: SnackPosition.TOP,
-          );
           clearController();
         }
       } catch (e) {
-        Get.snackbar(
-          "Error",
-          e.toString(),
-          snackPosition: SnackPosition.BOTTOM,
-        );
+        showSnackBar(context, "Error", e.toString());
       }
     } else {
-      Get.snackbar(
-        "Error",
-        "Password do not matched!",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      showSnackBar(context, "Error", "Password Unmatched!");
     }
+  }
+
+  Future<void> login(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        showSnackBar(context, "Successful", "Login Successfully!");
+        context.go(Paths.HOME_SCREEN);
+        print("Login Successfully!");
+        clearController();
+      } else {
+        showSnackBar(context, "Error", "Email or Password Unmatched!");
+        print("Email or Password Unmatched!");
+      }
+    } catch (e) {
+      showSnackBar(context, "Error", e.toString());
+      print(e.toString());
+    }
+  }
+
+  void showSnackBar(BuildContext context, String title, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('$title: $message'),
+        duration: Duration(seconds: 4),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 
   void clearController() {

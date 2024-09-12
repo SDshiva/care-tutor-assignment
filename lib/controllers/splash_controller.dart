@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:care_tutors_assignment/config/routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,7 @@ class SplashController extends GetxController {
     if (user != null) {
       context.go(Paths.HOME_SCREEN);
     } else {
-      context.go(Paths.REGISTER_SCREEN);
+      context.go(Paths.LOGIN_SCREEN);
     }
   }
 }
