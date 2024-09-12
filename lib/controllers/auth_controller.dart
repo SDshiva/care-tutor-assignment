@@ -66,6 +66,18 @@ class AuthController extends GetxController {
     }
   }
 
+  Future<void> signOut(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      clearController();
+      showSnackBar(context, "Successful", "You have been Sign Out");
+      context.go(Paths.LOGIN_SCREEN);
+    } catch (e) {
+      showSnackBar(context, "Error", e.toString());
+      print("Sign Out Failed: ${e.toString()}");
+    }
+  }
+
   void showSnackBar(BuildContext context, String title, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

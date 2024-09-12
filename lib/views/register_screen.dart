@@ -191,7 +191,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.go(Paths.LOGIN_SCREEN);
+                      context.push(Paths.LOGIN_SCREEN);
                     },
                     child: Text("Login!"),
                   ),
