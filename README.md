@@ -23,7 +23,7 @@ Here are some screenshots of the app:
 ## App Flow Video
 You can watch a demonstration of the app flow in this video:
 
-[Watch the App Flow Video](https://drive.google.com/file/d/1W0YZZA36wRCPPyDnaoKNq-1E-elsYF-X/view?usp=sharing)
+[Watch the App Flow Video][(https://drive.google.com/file/d/1W0YZZA36wRCPPyDnaoKNq-1E-elsYF-X/view?usp=sharing)](https://drive.google.com/drive/folders/1W0YZZA36wRCPPyDnaoKNq-1E-elsYF-X?usp=drive_link)
 
 ## Getting Started
 To get a local copy up and running, follow these steps.
