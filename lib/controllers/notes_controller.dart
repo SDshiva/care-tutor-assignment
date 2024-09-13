@@ -53,7 +53,9 @@ class NotesController extends GetxController {
   Future<void> addNote(BuildContext context) async {
     isAddNoteLoading.value = true;
     User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
+    if (user != null &&
+        titleController.text.isNotEmpty &&
+        descriptionController.text.isNotEmpty) {
       try {
         await FirebaseFirestore.instance
             .collection('users')
@@ -70,6 +72,9 @@ class NotesController extends GetxController {
       } catch (e) {
         showSnackBar(context, "Error", e.toString());
       }
+    } else {
+      showSnackBar(
+          context, "Error", "Please add title and description correctly");
     }
 
     fetchNotes(context);

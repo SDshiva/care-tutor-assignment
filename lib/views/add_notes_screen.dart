@@ -52,7 +52,7 @@ class AddNotesScreen extends StatelessWidget {
             SizedBox(height: 16),
             TextField(
               controller: notesController.descriptionController,
-              maxLines: 5, // Makes it a TextArea
+              maxLines: 5,
               decoration: InputDecoration(
                 labelText: "Description",
                 alignLabelWithHint: true,
@@ -74,7 +74,7 @@ class AddNotesScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             SizedBox(
-              width: double.infinity, // Makes the button take full width
+              width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
                   notesController.addNote(context);

@@ -40,7 +40,6 @@ class SplashController extends GetxController with GetTickerProviderStateMixin {
     await Future.delayed(Duration(seconds: 3));
 
     User? user = _auth.currentUser;
-
     if (user != null) {
       context.go(Paths.HOME_SCREEN);
     } else {

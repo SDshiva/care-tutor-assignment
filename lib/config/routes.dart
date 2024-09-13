@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:care_tutors_assignment/views/add_notes_screen.dart';
 import 'package:care_tutors_assignment/views/home_screen.dart';
 import 'package:care_tutors_assignment/views/login_screen.dart';
@@ -27,7 +29,6 @@ final GoRouter router = GoRouter(
       path: Paths.ADD_NOTES_SCREEN,
       builder: (context, state) => AddNotesScreen(),
     ),
-
   ],
 );
 
