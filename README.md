@@ -1,16 +1,30 @@
-# care_tutors_assignment
+# Care Tutors Assignment
 
-A new Flutter project.
+A Flutter-based note-taking application that allows users to store their notes securely in Firebase.
+
+## Features
+- User authentication with Firebase
+- Add, view, and delete notes
+- Data storage in Firestore under each user's UID
+- Responsive design and UI animations
+- GetX state management
+- Firestore integration for real-time updates
+- **Navigation with `go_router`** package for declarative routing
+
+## Screenshots
+Here are some screenshots of the app:
+
+![Splash Screen](./screenshot/splash_screen.jpg)
+![Login Screen](./screenshot/login_screen.jpg)
+![Register Screen](./screenshot/register_screen.jpg)
+![Home Screen](./screenshot/home_screen.jpg)
+![Add Note Screen](./screenshot/add_note_screen.jpg)
 
 ## Getting Started
+To get a local copy up and running, follow these steps.
 
-This project is a starting point for a Flutter application.
+### Prerequisites
+- [Flutter SDK](https://flutter.dev/docs/get-started/install) must be installed.
+- [Firebase CLI](https://firebase.google.com/docs/cli) setup and configured.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
