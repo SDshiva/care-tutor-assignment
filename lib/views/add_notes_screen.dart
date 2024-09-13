@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:care_tutors_assignment/controllers/notes_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,10 +29,17 @@ class AddNotesScreen extends StatelessWidget {
             ),
             SizedBox(height: 16),
             ElevatedButton(
-                onPressed: () {
-                  notesController.addNote(context);
-                },
-                child: Text("Save Note")),
+              onPressed: () {
+                notesController.addNote(context);
+              },
+              child: Obx(() {
+                if (notesController.isAddNoteLoading.value) {
+                  return CircularProgressIndicator();
+                } else {
+                  return Text("Save Note");
+                }
+              }),
+            ),
           ],
         ),
       ),

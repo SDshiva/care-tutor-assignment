@@ -29,18 +29,24 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Obx(() {
-        return ListView.builder(
-          itemCount: notesController.notes.length,
-          itemBuilder: (context, index) {
-            final note = notesController.notes[index];
-            return ListTile(
-              title: Text(note.title),
-              subtitle: Text(
-                note.description,
-              ),
-            );
-          },
-        );
+        if (notesController.isHomeLoading.value) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return ListView.builder(
+            itemCount: notesController.notes.length,
+            itemBuilder: (context, index) {
+              final note = notesController.notes[index];
+              return ListTile(
+                title: Text(note.title),
+                subtitle: Text(
+                  note.description,
+                ),
+              );
+            },
+          );
+        }
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

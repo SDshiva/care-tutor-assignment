@@ -169,13 +169,21 @@ class RegisterScreen extends StatelessWidget {
                         EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
                     elevation: 5.0,
                   ),
-                  child: Text(
-                    'Register',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  child: Obx(() {
+                    if (authController.isLoading.value) {
+                      return CircularProgressIndicator(
+                        color: Colors.white,
+                      );
+                    } else {
+                      return Text(
+                        'Register',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    }
+                  }),
                 ),
               ),
               SizedBox(
@@ -191,7 +199,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.push(Paths.LOGIN_SCREEN);
+                      context.go(Paths.LOGIN_SCREEN);
                     },
                     child: Text("Login!"),
                   ),

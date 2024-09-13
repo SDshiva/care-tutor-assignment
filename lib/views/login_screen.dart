@@ -110,27 +110,34 @@ class LoginScreen extends StatelessWidget {
               Container(
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    authController.login(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.blueAccent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                    onPressed: () {
+                      authController.login(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blueAccent,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 16.0, horizontal: 20.0),
+                      elevation: 5.0,
                     ),
-                    padding:
-                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
-                    elevation: 5.0,
-                  ),
-                  child: Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+                    child: Obx(() {
+                      if (authController.isLoading.value) {
+                        return CircularProgressIndicator(
+                          color: Colors.white,
+                        );
+                      } else {
+                        return Text(
+                          'Login',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      }
+                    })),
               ),
               SizedBox(
                 height: 20,

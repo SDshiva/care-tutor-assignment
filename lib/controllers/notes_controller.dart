@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
 import 'package:go_router/go_router.dart';
 
 import '../models/note_model.dart';
@@ -11,12 +12,14 @@ class NotesController extends GetxController {
   final descriptionController = TextEditingController();
 
   var notes = [].obs;
+  RxBool isHomeLoading = false.obs;
+  RxBool isAddNoteLoading = false.obs;
 
   Future<void> fetchNotes(BuildContext context) async {
     // var snapshot = await FirebaseFireStore.
     // var snapshot = await FirebaseFirestore.instance.collection('notes').get();
     // notes.value = snapshot.docs.map((doc) => Note.fromDocument(doc)).toList();
-
+    isHomeLoading.value = true;
     try {
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
@@ -34,6 +37,7 @@ class NotesController extends GetxController {
     } catch (e) {
       showSnackBar(context, "Error", "Error fetching notes: ${e.toString()}");
     }
+    isHomeLoading.value = false;
   }
 
   void showSnackBar(BuildContext context, String title, String message) {
@@ -47,6 +51,7 @@ class NotesController extends GetxController {
   }
 
   Future<void> addNote(BuildContext context) async {
+    isAddNoteLoading.value = true;
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
       await FirebaseFirestore.instance
@@ -60,6 +65,7 @@ class NotesController extends GetxController {
     }
 
     fetchNotes(context);
+    isAddNoteLoading.value = false;
     context.pop();
   }
 }

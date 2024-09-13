@@ -14,6 +14,7 @@ class AuthController extends GetxController {
 
   RxBool isPasswordHidden = true.obs;
   RxBool isConfirmPasswordHidden = true.obs;
+  RxBool isLoading = false.obs;
 
   void togglePasswordVisibility() {
     isPasswordHidden.value = !isPasswordHidden.value;
@@ -24,6 +25,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> register(BuildContext context) async {
+    isLoading.value = true;
     if (passwordController.text == confirmPasswordController.text) {
       try {
         UserCredential userCredential =
@@ -34,7 +36,10 @@ class AuthController extends GetxController {
         // User? user = FirebaseAuth.instance.currentUser;
         User? user = userCredential.user;
         if (user != null) {
-          await FirebaseFirestore.instance.collection('user').doc(user.uid).set(
+          await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .set(
             {
               'uid': user.uid,
               'createdAt': FieldValue.serverTimestamp(),
@@ -50,9 +55,11 @@ class AuthController extends GetxController {
     } else {
       showSnackBar(context, "Error", "Password Unmatched!");
     }
+    isLoading.value = false;
   }
 
   Future<void> login(BuildContext context) async {
+    isLoading.value = true;
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
@@ -73,6 +80,7 @@ class AuthController extends GetxController {
       showSnackBar(context, "Error", e.toString());
       print(e.toString());
     }
+    isLoading.value = false;
   }
 
   Future<void> signOut(BuildContext context) async {
