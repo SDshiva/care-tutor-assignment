@@ -3,6 +3,7 @@
 import 'package:care_tutors_assignment/config/routes.dart';
 import 'package:care_tutors_assignment/controllers/auth_controller.dart';
 import 'package:care_tutors_assignment/controllers/notes_controller.dart';
+import 'package:care_tutors_assignment/utils/note_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -10,15 +11,25 @@ import 'package:go_router/go_router.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  final NotesController notesController = Get.put(NotesController());
   final AuthController authController = Get.put(AuthController());
+  final NotesController notesController = Get.put(NotesController());
 
   @override
   Widget build(BuildContext context) {
     notesController.fetchNotes(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notes"),
+        title: Text(
+          "User's Notes",
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 3,
+          ),
+        ),
+        centerTitle: true,
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.blue.shade200,
         actions: [
           IconButton(
             onPressed: () {
@@ -29,7 +40,8 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Obx(() {
-        if (notesController.isHomeLoading.value) {
+        if (notesController.isHomeLoading.value ||
+            authController.isLogoutLoading.value) {
           return Center(
             child: CircularProgressIndicator(),
           );
@@ -38,21 +50,24 @@ class HomeScreen extends StatelessWidget {
             itemCount: notesController.notes.length,
             itemBuilder: (context, index) {
               final note = notesController.notes[index];
-              return ListTile(
-                title: Text(note.title),
-                subtitle: Text(
-                  note.description,
-                ),
-              );
+              return NoteCard(note: note);
             },
           );
         }
       }),
       floatingActionButton: FloatingActionButton(
+        heroTag: "Add Note",
+        backgroundColor: Colors.blueAccent.shade200,
         onPressed: () {
           context.push(Paths.ADD_NOTES_SCREEN);
         },
-        child: Icon(Icons.add),
+        shape: CircleBorder(),
+        elevation: 5,
+        tooltip: "Add Note",
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }

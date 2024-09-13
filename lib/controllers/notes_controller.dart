@@ -54,18 +54,31 @@ class NotesController extends GetxController {
     isAddNoteLoading.value = true;
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(user.uid)
-          .collection('notes')
-          .add({
-        'title': titleController.text.trim(),
-        'description': descriptionController.text.trim()
-      });
+      try {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .collection('notes')
+            .add({
+          'title': titleController.text.trim(),
+          'description': descriptionController.text.trim(),
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+
+        showSnackBar(context, "Successful", "Your note is added successfully");
+        clearController();
+      } catch (e) {
+        showSnackBar(context, "Error", e.toString());
+      }
     }
 
     fetchNotes(context);
     isAddNoteLoading.value = false;
     context.pop();
+  }
+
+  void clearController() {
+    titleController.clear();
+    descriptionController.clear();
   }
 }

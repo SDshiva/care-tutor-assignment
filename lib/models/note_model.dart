@@ -4,11 +4,13 @@ class Note {
   String id;
   String title;
   String description;
+  DateTime? createdAt;
 
   Note({
     required this.id,
     required this.title,
     required this.description,
+    this.createdAt,
   });
 
   factory Note.fromDocument(DocumentSnapshot doc) {
@@ -16,6 +18,7 @@ class Note {
       id: doc.id,
       title: doc['title'] ?? '',
       description: doc['description'] ?? '',
+      createdAt: (doc['createdAt'] as Timestamp?)?.toDate(),
     );
   }
 
@@ -23,6 +26,7 @@ class Note {
     return {
       'title': title,
       'description': description,
+      'createdAt': FieldValue.serverTimestamp(),
     };
   }
 }

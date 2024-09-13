@@ -13,15 +13,26 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.only(right: 20.0, left: 20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Text(
+                "Login",
+                style: TextStyle(
+                  height: 4,
+                  fontSize: 50,
+                  color: Colors.blue.shade500,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 5,
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               TextField(
                 controller: authController.emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -120,7 +131,7 @@ class LoginScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       padding: EdgeInsets.symmetric(
-                          vertical: 16.0, horizontal: 20.0),
+                          vertical: 14.0, horizontal: 30.0),
                       elevation: 5.0,
                     ),
                     child: Obx(() {
@@ -147,15 +158,17 @@ class LoginScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Don't have an account?"),
-                  SizedBox(
-                    width: 20,
-                  ),
                   TextButton(
                     onPressed: () {
                       authController.clearController();
                       context.push(Paths.REGISTER_SCREEN);
                     },
-                    child: Text("Register!"),
+                    child: Text(
+                      "Register!",
+                      style: TextStyle(
+                        color: Colors.greenAccent.shade400,
+                      ),
+                    ),
                   ),
                 ],
               ),

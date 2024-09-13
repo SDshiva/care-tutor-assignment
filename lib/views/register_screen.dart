@@ -14,9 +14,6 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Register"),
-      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(20.0),
@@ -24,6 +21,18 @@ class RegisterScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Text(
+                "Register",
+                style: TextStyle(
+                  fontSize: 50,
+                  color: Colors.blue.shade500,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 5,
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               TextField(
                 controller: authController.emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -166,7 +175,7 @@ class RegisterScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     padding:
-                        EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
+                        EdgeInsets.symmetric(vertical: 14.0, horizontal: 30.0),
                     elevation: 5.0,
                   ),
                   child: Obx(() {
@@ -194,14 +203,16 @@ class RegisterScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Already have an account?"),
-                  SizedBox(
-                    width: 20,
-                  ),
                   TextButton(
                     onPressed: () {
                       context.go(Paths.LOGIN_SCREEN);
                     },
-                    child: Text("Login!"),
+                    child: Text(
+                      "Login!",
+                      style: TextStyle(
+                        color: Colors.greenAccent.shade400,
+                      ),
+                    ),
                   ),
                 ],
               ),

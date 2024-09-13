@@ -15,6 +15,7 @@ class AuthController extends GetxController {
   RxBool isPasswordHidden = true.obs;
   RxBool isConfirmPasswordHidden = true.obs;
   RxBool isLoading = false.obs;
+  RxBool isLogoutLoading = false.obs;
 
   void togglePasswordVisibility() {
     isPasswordHidden.value = !isPasswordHidden.value;
@@ -84,6 +85,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> signOut(BuildContext context) async {
+    isLogoutLoading.value = true;
     try {
       await FirebaseAuth.instance.signOut();
       clearController();
@@ -93,6 +95,7 @@ class AuthController extends GetxController {
       showSnackBar(context, "Error", e.toString());
       print("Sign Out Failed: ${e.toString()}");
     }
+    isLogoutLoading.value = false;
   }
 
   void showSnackBar(BuildContext context, String title, String message) {
