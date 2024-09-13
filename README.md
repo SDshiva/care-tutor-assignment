@@ -23,7 +23,7 @@ Here are some screenshots of the app:
 ## App Flow Video
 You can watch a demonstration of the app flow in this video:
 
-[![Watch the app flow](https://drive.google.com/drive/u/1/folders/1W0YZZA36wRCPPyDnaoKNq-1E-elsYF-X))
+[Watch the App Flow Video](https://drive.google.com/file/d/1W0YZZA36wRCPPyDnaoKNq-1E-elsYF-X/view?usp=sharing)
 
 ## Getting Started
 To get a local copy up and running, follow these steps.
@@ -37,4 +37,4 @@ To get a local copy up and running, follow these steps.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/SDshiva/care-tutor-assignment
+   git clone https://github.com/SDshiva/care-tutor-assignment.git
